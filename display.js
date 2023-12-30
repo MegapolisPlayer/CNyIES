@@ -1,8 +1,4 @@
-import("./cookies.js");
-import("./date.js");
-
 //countdown
-
 
 //language updates
 

@@ -1,6 +1,3 @@
-import("./cookies.js");
-import("./date.js");
-
 //language updates
 
 let HeadersShort = [
