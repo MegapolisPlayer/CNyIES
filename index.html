@@ -7,10 +7,16 @@
 		<meta name="description" content="Christmas and New Years Display Information and Entertainment System">
 		<meta name="author" content="Martin/MegapolisPlayer">
 		<link rel="stylesheet" href="general.css">
-		<script src="date.js" type="module"></script>
-		<script src="index.js"></script>
+		<script src="/date.js"></script>
+		<script src="/index.js"></script>
+		<script>
+			function BodyOnLoad() {
+				DateUpdate();
+				Init();
+			}
+		</script>
     </head>
-    <body onload="">
+    <body onload="BodyOnLoad()">
 		<div id="copyright">
 			<div id="cleft"></div><div id="cright">(c) Martin/MegapolisPlayer 2023-2024, All rights reserved.</div>
 		</div>

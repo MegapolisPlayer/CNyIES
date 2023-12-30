@@ -27,7 +27,6 @@ function ChangeHeader() {
 const HeaderChangeInterval = setInterval(ChangeHeader, 2000);
     
 function Init() {
-	DateUpdate();
 	document.getElementById("header").innerHTML = HeadersShort[0];
     document.getElementById("headerp").innerHTML = Headers[0];
 }

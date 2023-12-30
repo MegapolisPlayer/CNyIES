@@ -1,7 +1,7 @@
-export function CookieWrite(key, value) {
+function CookieWrite(key, value) {
 	document.cookie = key+"="+value+";SameSite=lax;path=/;";
 }
-export function CookieRead(key) {
+function CookieRead(key) {
 	if(document.cookie.indexOf(key) == -1) {
 		return -1;	
 	}

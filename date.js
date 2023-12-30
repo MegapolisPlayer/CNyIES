@@ -1,8 +1,8 @@
 //date update
 
-export let DateNow = new Date();
+let DateNow = new Date();
 
-export function DateUpdate() {
+function DateUpdate() {
 	DateNow = new Date();
 	document.getElementById("cleft").innerHTML = 
     String(DateNow.getHours()).padStart(2, '0') + ":" + String(DateNow.getMinutes()).padStart(2, '0') + ":" + String(DateNow.getSeconds()).padStart(2, '0') + "; " +
