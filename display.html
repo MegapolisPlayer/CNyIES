@@ -6,8 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 		<meta name="author" content="Martin/MegapolisPlayer">
 		<link rel="stylesheet" href="general.css">
-		<script src="/js/display.js"></script>
+		<link rel="stylesheet" href="display.css">
 		<script src="/js/date.js"></script>
+		<script src="/js/cookies.js"></script>
+		<script src="/js/display.js"></script>
 		<script>
 			function BodyOnLoad() {
 				DateUpdate();
@@ -17,33 +19,42 @@
 	</head>
 	<body onload="BodyOnLoad()">
 		<div id="copyright">
-			<div id="cleft"></div>
-			<div id="cright">
-				(c) Martin/MegapolisPlayer 2023-2024, All rights reserved.
-				<button onclick="window.location.href='index.html'">Return to options</button>
-			</div>
+			<span id="cleft">
+			<button onclick="window.location.href='index.html'">Return to options</button>
+			<span class="time"></span>
+			</span>
+			<span id="cright">
+				(c) Martin/MegapolisPlayer 2023-2024, Licensed under CC-BY-NC 4.0.
+			</span>
 		</div>
 		<div id="headercontain">
 			<h id="header"></h>
 		</div>
 		<div id="countdown">
 			<div id="countdownheader">
-				<h class="name" id="countname">Countdown</h>
+				<h class="name" id="countname"></h>
 				<p id="countdowndesc"></p>
 			</div>
-			<div id="maincount">
-				99:99:99:99
-			</div>
+			<div id="maincount"></div>
 		</div>
-		<div id="ytplayercontain">
-			<div id="ytplayerheader">
-				<h class="name" id="musicname"></h>
-			</div>
-			<div id="ytplayerifc">
-				<iframe id="ytplayer" type="text/html"
-				src="https://www.youtube.com/embed/0?playlist=JderOU9IBTo,KO5akJ29wwQ,PCIrm_ZGEn4,sl-xupx1bVU,ozyxPcK1r6c,Mq3hRVAC1GE,CWKYyqpSbgU,JGX8umOcmPg,3BS9ohD1R5g,ZLqbkBPNEUU,O0fkOIR_67I&version=3&autoplay=1&disablekb=1&enablejsapi=1&loop=1&modestbranding=1&color=white"
-				frameborder="0" allowfullscreen>
-			</div>
+		<div id="lowercontainer">
+			<span id="ytplayercontain">
+				<div id="ytplayerheader">
+					<h class="name" id="musicname"></h>
+				</div>
+				<div id="ytplayerifc">
+					<iframe id="ytplayer" type="text/html"
+					src="https://www.youtube.com/embed/0?playlist=JderOU9IBTo,KO5akJ29wwQ,PCIrm_ZGEn4,sl-xupx1bVU,ozyxPcK1r6c,Mq3hRVAC1GE,CWKYyqpSbgU,JGX8umOcmPg,3BS9ohD1R5g,ZLqbkBPNEUU,CRb7Ugl8HVs,3RJ2gEFXzgc,O0fkOIR_67I&version=3&autoplay=1&disablekb=1&enablejsapi=1&loop=1&modestbranding=1&color=white"
+					frameborder="0" allowfullscreen></iframe>
+				</div>
+			</span>
+			<span id="tzmapcontain">
+				<div id="tzmapheader">
+					<h class="name" id="tzmapname"></h>
+				</div>
+				<canvas id="tzcanvas">
+				</canvas>
+			</span>
 		</div>
 </body>
 </html>  

@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700');
 
+:root {
+	--mainbgcolor: #500000;
+	--mainfgcolor: #ffffff;
+}  
+
 html {
     overflow: hidden;
     min-height: 100%;
@@ -7,11 +12,11 @@ html {
 }
 
 body {
-    background: rgb(0,120,0);
+    background: var(--mainbgcolor);
     background-attachment: fixed;
-    color: #ffffff;
+    color: var(--mainfgcolor);
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: clamp(10px, 20px, 20px);
     border-collapse: collapse;
 }
 
@@ -19,11 +24,11 @@ button {
 	display: inline;
 	text-align: center;
 	font-weight: 700;
-	background: rgb(0,120,0);
-	color: #ffffff;
+	background: var(--mainbgcolor);
+	color: var(--mainfgcolor);
 	padding: 2px;
 	margin: 0;
-	border: 1px solid #ffffff;
+	border: 1px solid var(--mainfgcolor);
 }
 
 .name {
@@ -36,18 +41,36 @@ p {
 	margin: 0;
 }
 
+a {
+	text-decoration-line: underline;
+	text-decoration-style: dotted;
+}
+a:link {
+	color: #ffbbbb;
+}
+a:visited {
+	color: #dddddd;
+}
+a:hover {
+	color: #dd0000;
+}
+a:active {
+	color: var(--mainfgcolor);
+}
+
 /*Copyright info and tests*/
 
 #copyright {
     padding: 10px;
-    border-bottom: 5px solid #ffffff;
+    border-bottom: 5px solid var(--mainfgcolor);
     overflow: auto;
+	font-size: clamp(10px, 20px, 20px);
 }
 #cleft {
-    float: left;
+	float: left;
 }
 #cright {
-    float: right;
+	float: right;
 }
 
 /*Header*/
@@ -56,64 +79,11 @@ p {
     width: 99%;
     text-align: center; 
     padding: 10px;
-    border-bottom: 5px solid #ffffff;
+    border-bottom: 5px solid var(--mainfgcolor);
 }
 #header {
-    font-size: 55px;
+    font-size: clamp(25px, 50px, 50px);
     font-weight: 700;
     text-align: center;
     display: inline-block;
-}
-
-/*Centered div*/
-
-#center {
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    text-align: center;
-}
-
-/*New Year Countdown*/
-
-#countdown {
-    border-bottom: 5px solid #ffffff;
-}
-#countdownheader {
-    width: 100%;
-    text-align: center;
-}
-#maincount {
-    font-size: 200px;
-    width: 100%;
-    text-align: center;
-}
-
-/*YT player*/
-
-#ytplayercontain {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 70vh;
-    height: calc(40vh + 10px + 20px);
-    border: 5px solid #ffffff;
-}
-#ytplayerheader {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-}
-#ytplayerifc {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40vh;
-}
-#ytplayer {
-    width: 100%;
-    height: 100%;
 }
