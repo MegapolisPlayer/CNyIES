@@ -7,8 +7,7 @@ html {
 }
 
 body {
-    background: rgb(0,96,0);
-    background: linear-gradient(0deg, rgba(0,96,0,1) 0%, rgba(0,170,0,1) 100%);
+    background: rgb(0,120,0);
     background-attachment: fixed;
     color: #ffffff;
     font-family: 'Open Sans', sans-serif;
@@ -16,9 +15,25 @@ body {
     border-collapse: collapse;
 }
 
+button {
+	display: inline;
+	text-align: center;
+	font-weight: 700;
+	background: rgb(0,120,0);
+	color: #ffffff;
+	padding: 2px;
+	margin: 0;
+	border: 1px solid #ffffff;
+}
+
 .name {
     font-weight: 700;
     padding: 5px;
+
+}
+
+p {
+	margin: 0;
 }
 
 /*Copyright info and tests*/

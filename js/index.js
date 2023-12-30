@@ -9,7 +9,7 @@ let HeadersShort = [
 ]; 
 
 let Headers = [
-    "Vánoční a Novoroční informarční a zábavný systém",
+    "Vánoční a Novoroční informační a zábavný systém",
     "Christmas and New Year Information and Entertainment System",
     "Рождественско-новогодняя информационно-развлекательная система",
     "Informations- und Entertainment-System für Weihnachten und Neujahr",
@@ -26,7 +26,7 @@ function ChangeHeader() {
 }
 const HeaderChangeInterval = setInterval(ChangeHeader, 2000);
     
-function Init() {
+function InitWebI() {
 	document.getElementById("header").innerHTML = HeadersShort[0];
     document.getElementById("headerp").innerHTML = Headers[0];
 }

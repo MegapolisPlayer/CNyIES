@@ -5,18 +5,23 @@
 		<meta charset="UTF-8">	
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 		<meta name="author" content="Martin/MegapolisPlayer">
-		<script src="/date.js"></script>
-		<script src="/display.js"></script>
+		<link rel="stylesheet" href="general.css">
+		<script src="/js/display.js"></script>
+		<script src="/js/date.js"></script>
 		<script>
 			function BodyOnLoad() {
 				DateUpdate();
-				Init();
+				InitWebD();
 			}
 		</script>
 	</head>
 	<body onload="BodyOnLoad()">
 		<div id="copyright">
-			<div id="cleft"></div><div id="cright">(c) Martin/MegapolisPlayer 2023-2024, All rights reserved.</div>
+			<div id="cleft"></div>
+			<div id="cright">
+				(c) Martin/MegapolisPlayer 2023-2024, All rights reserved.
+				<button onclick="window.location.href='index.html'">Return to options</button>
+			</div>
 		</div>
 		<div id="headercontain">
 			<h id="header"></h>
@@ -24,6 +29,7 @@
 		<div id="countdown">
 			<div id="countdownheader">
 				<h class="name" id="countname">Countdown</h>
+				<p id="countdowndesc"></p>
 			</div>
 			<div id="maincount">
 				99:99:99:99

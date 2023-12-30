@@ -1,5 +1,3 @@
-//countdown
-
 //language updates
 
 let Headers = [
@@ -23,6 +21,14 @@ let Music = [
 	"Musik",
 	"Muzyka"
 ]; 
+
+let CountdownDescs = [
+    "Den:Hodina:Minuta:Sekunda",
+    "Day:Hour:Minute:Second",
+    "День:Час:Минута:Секунда",
+    "Tag:Stunde:Minute:Sekunde",
+    "Dzień:Godzina:Minuta:Sekunda"
+]; 
          
 let LangId = 0;
          
@@ -32,12 +38,13 @@ function ChangeHeader() {
 	document.getElementById("header").innerHTML = Headers[LangId];
 	document.getElementById("countname").innerHTML = Count[LangId];
 	document.getElementById("musicname").innerHTML = Music[LangId];
+	document.getElementById("countdowndesc").innerHTML = CountdownDescs[LangId];
 }
 const HeaderChangeInterval = setInterval(ChangeHeader, 2000);
          
-function Init() {
-	DateUpdate();
+function InitWebD() {
 	document.getElementById("header").innerHTML = Headers[0];
 	document.getElementById("countname").innerHTML = Count[0];
 	document.getElementById("musicname").innerHTML = Music[0];
+	document.getElementById("countdowndesc").innerHTML = CountdownDescs[0];
 }
