@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700');
 
 :root {
-	--mainbgcolor: #500000;
-	--mainfgcolor: #ffffff;
+	--mainbgcolor: rgb(80,0,0);
+	--mainfgcolor: rgb(255,255,255);
 }  
 
 html {

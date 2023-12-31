@@ -106,10 +106,12 @@ function DrawTimezoneBounds() {
 		let TimeUntilNewYearM = Math.floor((TimeUntilNewYear % 3600) / 60); //convert to minutes (remove hours)
 
 		if(DEBUG_OverrideHour) {
-			TimeUntilNewYearH = DEBUG_VALUE_HourOverrideValue - (i-12);
+			TimeUntilNewYear = ((NewYearTime - DateNow) / 1000) - (DEBUG_VALUE_HourOverrideValue*3600);
+			TimeUntilNewYearH = Math.floor(TimeUntilNewYear / 3600); //convert to hours
+			TimeUntilNewYearM = Math.floor((TimeUntilNewYear % 3600) / 60); //convert to minutes (remove hours)
 		}
 
-		if(!(TimeUntilNewYearH > 0 && TimeUntilNewYearH <= 24)) {
+		if(!((TimeUntilNewYearH > 0 && TimeUntilNewYearH <= 24) || (TimeUntilNewYearH > 99))) {
 			//timezone transparent boxes
 
 			if(TimeUntilNewYearH < 0) {
@@ -148,7 +150,16 @@ function DrawTimezoneBounds() {
 			else {
 				SetCanvasColor("#cccccc");
 			}
-			let TimeUntilNewYearText = String(TimeUntilNewYearH) + ":" + String(TimeUntilNewYearM);
+			let TimeUntilNewYearText;
+			if(TimeUntilNewYearH >= 0 && (TimeUntilNewYearH <= 99)) {
+				TimeUntilNewYearText = String(TimeUntilNewYearH).padStart(2, '0') + ":" + String(TimeUntilNewYearM).padStart(2, '0');
+			}
+			else if(TimeUntilNewYearH <= 0) {
+				TimeUntilNewYearText = String(Math.abs(TimeUntilNewYearH + 1)).padStart(2, '0') + ":" + String(Math.abs(TimeUntilNewYearM)).padStart(2, '0');
+			}
+			else {
+				TimeUntilNewYearText = ">99:00";
+			}
 			DrawCenteredText(TimeUntilNewYearText, GetPercentage((i*(100/24)), Canvas.width), Canvas.height*0.8);
 
 			//timezone no. text
@@ -169,7 +180,7 @@ function DrawTimezoneBounds() {
 	}
 }
 
-const MapUpdateInterval = setInterval(DrawTimezoneBounds, 5000); //every 5 seconds
+const MapUpdateInterval = setInterval(DrawTimezoneBounds, 2500); //every 2.5 seconds
 
 //countdown
 
@@ -199,6 +210,44 @@ function DecreaseCountdown() {
 
 const CountdownUpdateInterval = setInterval(DecreaseCountdown, 500); //less to potentially catch up
 
+//snowflakes
+
+let SnowflakeCanvas;
+let SnowflakeCanvasC;
+let Snowflakes = new Array(1000);
+
+function SnowflakeUpdate() {
+	SnowflakeCanvas = document.getElementById("snowflakescreen");
+	SnowflakeCanvasC = SnowflakeCanvas.getContext("2d");
+
+	SnowflakeCanvas.width = window.screen.availWidth;
+	SnowflakeCanvas.height = window.screen.availHeight;
+	SnowflakeCanvasC.lineWidth = 1;
+	SnowflakeCanvasC.fillStyle = document.querySelector(":root").style.getPropertyValue("--mainbgcolor");
+	SnowflakeCanvasC.strokeStyle = SnowflakeCanvasC.fillStyle;
+	
+	SnowflakeCanvasC.fillRect(0, 0, SnowflakeCanvas.width, SnowflakeCanvas.height);
+
+	let RGBValue = document.querySelector(":root").style.getPropertyValue("--mainfgcolor");
+	let RVA = RGBValue.slice(RGBValue.indexOf("(") + 1, RGBValue.indexOf(")")).split(","); 
+
+	//darken a bit
+	for(let i = 0; i < RVA.length; i++) {
+		RVA[i] = String((Number(RVA[i]) - 100) < 0 ? 0 : Number(RVA[i]) - 100);
+	}
+	
+	SnowflakeCanvasC.fillStyle = "rgb("+RVA[0]+","+RVA[1]+","+RVA[2]+")";
+	SnowflakeCanvasC.strokeStyle = SnowflakeCanvasC.fillStyle;
+
+	for(let i = 0; i < 100; i++) {
+		SnowflakeCanvasC.beginPath();
+		SnowflakeCanvasC.arc(Math.random()*SnowflakeCanvas.width, Math.random()*SnowflakeCanvas.height, 10, 0, Math.PI * 2);
+		SnowflakeCanvasC.fill();
+	}
+}
+
+//const SnowflakeInterval = setInterval(SnowflakeUpdate, 100);
+
 //init
 
 function InitWebD() {
@@ -223,4 +272,10 @@ function InitWebD() {
 
 	DrawWorldMap();
 	DrawTimezoneBounds();
+
+	//snowflake stuff
+
+
+
+	//SnowflakeUpdate();
 }
