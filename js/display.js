@@ -214,18 +214,13 @@ const CountdownUpdateInterval = setInterval(DecreaseCountdown, 500); //less to p
 
 let SnowflakeCanvas;
 let SnowflakeCanvasC;
-let Snowflakes = new Array(1000);
+let Snowflakes = new Array();
+let SnowflakeInterval;
+let SnowflakesAmount = 2500;
 
 function SnowflakeUpdate() {
-	SnowflakeCanvas = document.getElementById("snowflakescreen");
-	SnowflakeCanvasC = SnowflakeCanvas.getContext("2d");
-
-	SnowflakeCanvas.width = window.screen.availWidth;
-	SnowflakeCanvas.height = window.screen.availHeight;
-	SnowflakeCanvasC.lineWidth = 1;
 	SnowflakeCanvasC.fillStyle = document.querySelector(":root").style.getPropertyValue("--mainbgcolor");
 	SnowflakeCanvasC.strokeStyle = SnowflakeCanvasC.fillStyle;
-	
 	SnowflakeCanvasC.fillRect(0, 0, SnowflakeCanvas.width, SnowflakeCanvas.height);
 
 	let RGBValue = document.querySelector(":root").style.getPropertyValue("--mainfgcolor");
@@ -233,20 +228,55 @@ function SnowflakeUpdate() {
 
 	//darken a bit
 	for(let i = 0; i < RVA.length; i++) {
-		RVA[i] = String((Number(RVA[i]) - 100) < 0 ? 0 : Number(RVA[i]) - 100);
+		RVA[i] = String(Math.floor(Number(RVA[i])/2));
 	}
 	
 	SnowflakeCanvasC.fillStyle = "rgb("+RVA[0]+","+RVA[1]+","+RVA[2]+")";
 	SnowflakeCanvasC.strokeStyle = SnowflakeCanvasC.fillStyle;
 
-	for(let i = 0; i < 100; i++) {
+	for(let i = 0; i < SnowflakesAmount; i++) {
+		//general direction
+		Snowflakes[i].X += 0.1;
+		Snowflakes[i].Y += 0.3;
+
+		//some randomness
+		Snowflakes[i].X += (Math.random()-0.5)/8;
+		Snowflakes[i].Y += (Math.random()-0.5)/8;
+
+		if(Snowflakes[i].Y >= SnowflakeCanvas.height - 5) {
+			Snowflakes[i].Y = 0;
+		}
+		if(Snowflakes[i].X >= SnowflakeCanvas.width - 5) {
+			Snowflakes[i].X = 0;
+		}
+
 		SnowflakeCanvasC.beginPath();
-		SnowflakeCanvasC.arc(Math.random()*SnowflakeCanvas.width, Math.random()*SnowflakeCanvas.height, 10, 0, Math.PI * 2);
+		SnowflakeCanvasC.arc(Snowflakes[i].X, Snowflakes[i].Y, 5, 0, Math.PI * 2);
 		SnowflakeCanvasC.fill();
 	}
 }
 
-//const SnowflakeInterval = setInterval(SnowflakeUpdate, 100);
+function SnowflakeInit() {
+	SnowflakeCanvas = document.getElementById("snowflakescreen");
+	SnowflakeCanvas.width = window.screen.availWidth;
+	SnowflakeCanvas.height = window.screen.availHeight;
+	SnowflakeCanvasC = SnowflakeCanvas.getContext("2d");
+
+	SnowflakeCanvasC.lineWidth = 1;
+
+	SnowflakeCanvasC.fillStyle = document.querySelector(":root").style.getPropertyValue("--mainbgcolor");
+	SnowflakeCanvasC.strokeStyle = SnowflakeCanvasC.fillStyle;
+	SnowflakeCanvasC.fillRect(0, 0, SnowflakeCanvas.width, SnowflakeCanvas.height);
+
+	for(let i = 0; i < SnowflakesAmount; i++) {
+		Snowflakes.push({
+			X: Math.random()*window.screen.availWidth,
+			Y: Math.random()*window.screen.availHeight
+		});
+	}
+
+	SnowflakeInterval = setInterval(SnowflakeUpdate, 10);
+}
 
 //init
 
@@ -275,7 +305,5 @@ function InitWebD() {
 
 	//snowflake stuff
 
-
-
-	//SnowflakeUpdate();
+	SnowflakeInit();
 }
