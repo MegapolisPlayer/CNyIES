@@ -191,7 +191,7 @@ function DecreaseCountdown() {
 	let MsCount = (new Date(DateNow.getFullYear() + 1, 0, 1, 0, 0, 0, 0) - DateNow) / 1000; //to seconds (original in MS)
 
 	//new year passed - 1st or 2nd of January - GREY countdown
-	if((DateNow.getDate() <= 2 && DateNow.getMonth == 0) || DEBUG_ForceChanges) {
+	if((DateNow.getDate() <= 2 && DateNow.getMonth() == 0) || DEBUG_ForceChanges) {
 		document.getElementById("maincount").style = "filter: brightness(30%);";
 	}
 
@@ -203,7 +203,7 @@ function DecreaseCountdown() {
 		;
 
 	//new year passed - 1st or 2nd of January - append the year
-	if((DateNow.getDate() <= 2 && DateNow.getMonth == 0) || DEBUG_ForceChanges) {
+	if((DateNow.getDate() <= 2 && DateNow.getMonth() == 0) || DEBUG_ForceChanges) {
 		document.getElementById("maincount").innerHTML += (", (" + String(DateNow.getFullYear() + 1) + ")");
 	}
 }
