@@ -87,6 +87,10 @@ function DrawCenteredText(Text, X, Y) {
 	CanvasC.fillText(Text, X - (TextSize.width/2), Y + (ActualTextHeight/2));
 }
 
+//debug stuff again (shows the state of the map when N hours are remaining IN YOUR TIME ZONE)
+let DEBUG_OverrideHour = false;
+let DEBUG_VALUE_HourOverrideValue = 0;
+
 //also draws text i guess
 function DrawTimezoneBounds() {
 	ClearCanvas();
@@ -101,15 +105,17 @@ function DrawTimezoneBounds() {
 		let TimeUntilNewYearH = Math.floor(TimeUntilNewYear / 3600); //convert to hours
 		let TimeUntilNewYearM = Math.floor((TimeUntilNewYear % 3600) / 60); //convert to minutes (remove hours)
 
-		//TimeUntilNewYear = -5 - (i-12); //DEBUG ONLY, left here because why not 
+		if(DEBUG_OverrideHour) {
+			TimeUntilNewYearH = DEBUG_VALUE_HourOverrideValue - (i-12);
+		}
 
-		if(!(TimeUntilNewYearH > 1 && TimeUntilNewYearH <= 24)) {
+		if(!(TimeUntilNewYearH > 0 && TimeUntilNewYearH <= 24)) {
 			//timezone transparent boxes
 
-			if(TimeUntilNewYearH <= 0) {
+			if(TimeUntilNewYearH < 0) {
 				SetCanvasColor("#00ff00");
 			}
-			else if(TimeUntilNewYearH == 1) {
+			else if(TimeUntilNewYearH == 0) {
 				SetCanvasColor("#ffff00");
 			}
 			else if(TimeUntilNewYearH > 24) {
@@ -127,10 +133,10 @@ function DrawTimezoneBounds() {
 		if(!(i == 0 || i == 24)) {
 			//time until new year text
 
-			if(TimeUntilNewYearH <= 0) {
+			if(TimeUntilNewYearH < 0) {
 				SetCanvasColor("#cccccc");
 			}
-			else if(TimeUntilNewYearH == 1) {
+			else if(TimeUntilNewYearH == 0) {
 				SetCanvasColor("#cc6600");
 			}
 			else if(TimeUntilNewYearH <= 12) {
