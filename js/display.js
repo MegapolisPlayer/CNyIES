@@ -99,7 +99,14 @@ function DrawTimezoneBounds() {
 	for(let i = 0; i < 25; i++) {
 		//variables
 
-		let NewYearTime = new Date(DateNow.getFullYear() + 1, 0, 1, 0, 0, 0, 0);
+
+		let NewYearTime;
+		if((DateNow.getDate() <= 2 && DateNow.getMonth() == 0) || DEBUG_ForceChanges) {
+			NewYearTime = new Date(DateNow.getFullYear(), 0, 1, 0, 0, 0, 0);
+		}
+		else {
+			NewYearTime = new Date(DateNow.getFullYear() + 1, 0, 1, 0, 0, 0, 0);
+		}
 		NewYearTime.setHours(NewYearTime.getHours() - (NewYearTime.getTimezoneOffset() / 60) - (i-12)); //convert to UTC
 		let TimeUntilNewYear = (NewYearTime - DateNow) / 1000;
 		let TimeUntilNewYearH = Math.floor(TimeUntilNewYear / 3600); //convert to hours
