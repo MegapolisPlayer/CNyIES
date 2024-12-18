@@ -1,21 +1,27 @@
 /*New Year Countdown*/
 
 #countdown {
-    border-bottom: 5px solid var(--mainfgcolor);
-	/*
-	background-color: #777777;
-	color: #dd9900;
-	*/
+    border-bottom: 0.25vw solid var(--mainfgcolor);
 }
 #countdownheader {
     width: 100%;
     text-align: center;
 }
 #maincount {
-    font-size: 200px;
+    font-size: 10vw;
     width: 100%;
     text-align: center;
 	font-weight: 700;
+}
+
+/*For clock mode*/
+#sidecount {
+    font-size: 2vw;
+    width: 100%;
+    text-align: center;
+	font-weight: lighter;
+	margin: 0;
+	padding: 0px;
 }
 
 /*Snowflake canvas*/
@@ -26,7 +32,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: -10;
+	z-index: -100;
 }
 
 /*Lower section*/
@@ -34,37 +40,26 @@
 #lowercontainer {
 	display: flex;
 	width: 100%;
-    height: calc(45vh);
+    height: 45vh;
 }
 
 /*YT player*/
 
-#ytplayercontain {
-	flex-grow: 1;
-	flex-shrink: 1;
-    width: calc(40vw - 10px);
-	height: 100%;
+#musiccontain {
+	display: flex;
+	flex-direction: column;
+    width: 39.5vw;
 	float: left;
-    border: 5px solid var(--mainfgcolor);
+    border: 0.25vw solid var(--mainfgcolor);
 }
-#ytplayerheader {
-    position: relative;
-    top: 0;
-    left: 0;
+#musicheader {
     width: 100%;
     text-align: center;
-	min-height: 30px;
+	height: 1.5vw;
+	flex: 0 1 auto;
 }
-#ytplayerifc {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-	height: calc(100% - 30px);
-}
-#ytplayer {
-    width: 100%;
-    height: 100%;
+#musicplayer {
+	flex: 1 1 auto;
 }
 
 /*Timezone map*/
@@ -72,18 +67,18 @@
 #tzmapcontain {
 	flex-grow: 1;
 	flex-shrink: 1;
-    width: calc(60vw - 10px);
+    width: 59.5vw;
 	height: 100%;
 	float: right;
-    border: 5px solid var(--mainfgcolor);
+    border: 0.25vw solid var(--mainfgcolor);
 }
 #tzmapheader {
     width: 100%;
     text-align: center;
-	min-height: 30px;
+	min-height: 1.5vw;
 }
 #tzcanvas {
 	width: 100%;
-    height: calc(100% - 30px);
+    height: calc(100% - 1.5vw);
 	background-color: #aaaaaa;
 }

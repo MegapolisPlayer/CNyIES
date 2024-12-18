@@ -5,51 +5,94 @@ let Headers = [
 	"Merry Christmas and a Happy New Year",
 	"С Новым Годом и Счастливого Рождества",
 	"Fröhe Weihnachten und eines gutes neues Jahr",
-	"Błogosławionych Świąt Bożego Narodzenia i Wspanialego Nowego Roku"
-]; 
+	"Błogosławionych Świąt Bożego Narodzenia i Wspanialego Nowego Roku",
+	"Feliz Navidad y Próspero Año Nuevo"
+];
+
 let Count = [
     "Odpočet do Nového Roku",
 	"Countdown to the New Year",
 	"Отсчет до Нового года",
 	"Neujahr-Countdown",
-	"Odliczanie do Nowego Roku"
-];  
-
-let Music = [
-	"Hudba",
-	"Music",
-	"Музыка",
-	"Musik",
-	"Muzyka"
+	"Odliczanie do Nowego Roku",
+	"Cuenta regresiva para el nuevo año"
 ]; 
-let TzMap = [
-    "Mapa časových pásem",
-    "Map of Timezones",
-    "Карта часовых поясов",
-    "Karte der Zeitzonen",
-    "Mapa stref czasowych"
-]; 
+let TimeNames = [
+    "Aktuální čas",
+	"Current time",
+	"Текущее время",
+	"Aktuelle Zeit",
+	"Aktualny czas",
+	"Hora actual"
+];
 
 let CountdownDescs = [
     "Den:Hodina:Minuta:Sekunda",
     "Day:Hour:Minute:Second",
     "День:Час:Минута:Секунда",
     "Tag:Stunde:Minute:Sekunde",
-    "Dzień:Godzina:Minuta:Sekunda"
+    "Dzień:Godzina:Minuta:Sekunda",
+	"Día:Hora:Minuto:Segundo"
+];
+let TimeFormat = [
+    "Hodina:Minuta:Sekunda",
+    "Hour:Minute:Second",
+    "Час:Минута:Секунда",
+    "Stunde:Minute:Sekunde",
+    "Godzina:Minuta:Sekunda",
+	"Hora:Minuto:Segundo"
+];
+
+let Music = [
+	"Hudba",
+	"Music",
+	"Музыка",
+	"Musik",
+	"Muzyka",
+	"Música"
+]; 
+let TzMap = [
+    "Mapa časových pásem",
+    "Map of Timezones",
+    "Карта часовых поясов",
+    "Karte der Zeitzonen",
+    "Mapa stref czasowych",
+	"Mapa de zonas horarias"
 ]; 
          
 let LangId = 0;
+
+//configs
+
+let TimeMode = false;
+// 0 is blocked, 1 is allowed
+let LangIdBlock = [ 1, 1, 1, 1, 1, 1 ];
          
 function ChangeHeader() {
 	LangId++;
 	if(LangId == Headers.length) { LangId = 0; }
+
+	//move further
+	while(LangIdBlock[LangId] === 0) {
+		LangId++;
+		if(LangId == Headers.length) { LangId = 0; }
+	}
+
 	document.getElementById("header").innerHTML = Headers[LangId];
-	document.getElementById("countname").innerHTML = Count[LangId];
+
+	if(TimeMode) {
+		//clock mode
+		document.getElementById("countname").innerHTML = TimeNames[LangId];
+		document.getElementById("countdowndesc").innerHTML = TimeFormat[LangId];
+	}
+	else {
+		//countdown mode
+		document.getElementById("countname").innerHTML = Count[LangId];
+		document.getElementById("countdowndesc").innerHTML = CountdownDescs[LangId];
+	}
 
 	document.getElementById("musicname").innerHTML = Music[LangId];
 	document.getElementById("tzmapname").innerHTML = TzMap[LangId];
-
-	document.getElementById("countdowndesc").innerHTML = CountdownDescs[LangId];
 }
 const HeaderChangeInterval = setInterval(ChangeHeader, 2000);
      
@@ -195,7 +238,22 @@ const MapUpdateInterval = setInterval(DrawTimezoneBounds, 2500); //every 2.5 sec
 let DEBUG_ForceChanges = false;
 
 function DecreaseCountdown() {
-	let MsCount = (new Date(DateNow.getFullYear() + 1, 0, 1, 0, 0, 0, 0) - DateNow) / 1000; //to seconds (original in MS)
+	if(TimeMode) {
+		document.getElementById("maincount").innerHTML = 
+		String(DateNow.getHours()).padStart(2, '0') + ":" +
+		String(DateNow.getMinutes()).padStart(2, '0') + ":" +
+		String(DateNow.getSeconds()).padStart(2, '0');
+
+		document.getElementById("sidecount").innerHTML = 
+			String(DateNow.getDate()) + "." +
+			String(DateNow.getMonth()+1) + "." +
+			String(DateNow.getFullYear());
+
+		return;
+
+	}
+
+	let Seconds = (new Date(DateNow.getFullYear() + 1, 0, 1, 0, 0, 0, 0) - DateNow) / 1000; //to seconds (original in MS)
 
 	//new year passed - 1st or 2nd of January - GREY countdown
 	if((DateNow.getDate() <= 2 && DateNow.getMonth() == 0) || DEBUG_ForceChanges) {
@@ -203,10 +261,10 @@ function DecreaseCountdown() {
 	}
 
 	document.getElementById("maincount").innerHTML = 
-		String(Math.floor(MsCount / 86400)).padStart(2, '0') + ":" +
-		String(Math.floor((MsCount % 86400) / 3600)).padStart(2, '0') + ":" +
-		String(Math.floor((MsCount % 86400 % 3600) / 60)).padStart(2, '0') + ":" +
-		String(Math.floor(MsCount % 86400 % 3600 % 60)).padStart(2, '0')
+		String(Math.floor(Seconds / 86400)).padStart(2, '0') + ":" +
+		String(Math.floor((Seconds % 86400) / 3600)).padStart(2, '0') + ":" +
+		String(Math.floor((Seconds % 86400 % 3600) / 60)).padStart(2, '0') + ":" +
+		String(Math.floor(Seconds % 86400 % 3600 % 60)).padStart(2, '0')
 		;
 
 	//new year passed - 1st or 2nd of January - append the year
@@ -223,7 +281,7 @@ let SnowflakeCanvas;
 let SnowflakeCanvasC;
 let Snowflakes = new Array();
 let SnowflakeInterval;
-let SnowflakesAmount = 2500;
+let SnowflakesAmount;
 
 function SnowflakeUpdate() {
 	SnowflakeCanvasC.fillStyle = document.querySelector(":root").style.getPropertyValue("--mainbgcolor");
@@ -275,6 +333,8 @@ function SnowflakeInit() {
 	SnowflakeCanvasC.strokeStyle = SnowflakeCanvasC.fillStyle;
 	SnowflakeCanvasC.fillRect(0, 0, SnowflakeCanvas.width, SnowflakeCanvas.height);
 
+	SnowflakesAmount = Number(CookieRead("snow"));
+
 	for(let i = 0; i < SnowflakesAmount; i++) {
 		Snowflakes.push({
 			X: Math.random()*window.screen.availWidth,
@@ -299,13 +359,13 @@ function InitWebD() {
 	//CanvasC.globalAlpha = 1;
 	CanDraw = true;
 
-	document.getElementById("header").innerHTML = Headers[0];
-	document.getElementById("countname").innerHTML = Count[0];
+	TimeMode = Boolean(Number(CookieRead("clock")));
+	console.log("Time mode "+TimeMode);
+	LangIdBlock = CookieRead("langs").split('').map((v) => { return parseInt(v); });
+	console.log("Language permissions "+LangIdBlock);
 
-	document.getElementById("musicname").innerHTML = Music[0];
-	document.getElementById("tzmapname").innerHTML = TzMap[0];
-
-	document.getElementById("countdowndesc").innerHTML = CountdownDescs[0];
+	//setup headers
+	ChangeHeader();
 
 	DrawWorldMap();
 	DrawTimezoneBounds();

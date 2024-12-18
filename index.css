@@ -7,9 +7,34 @@
     text-align: center;
 }
 
-#fgset { border-bottom: 5px solid var(--mainfgcolor); }
-#bgset { border-bottom: 5px solid var(--mainfgcolor); }
+#settings {
+    display: grid;
+    columns: 2;
+}
 
-#info {
-	border: 5px solid var(--mainfgcolor);
+.settingspart {
+    width: 49vw;
+    border-bottom: 0.25vw solid var(--mainfgcolor); 
+}
+
+#fgset { 
+    grid-column: 1;
+   
+}
+#bgset { 
+    grid-column: 2;
+}
+#langset { 
+    grid-column: 1;
+   
+}
+#miscset { 
+    grid-column: 2;
+}
+
+label {
+    font-size: 1vw;
+}
+input[type="range"] {
+    width: 30vw;
 }

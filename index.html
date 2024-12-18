@@ -23,7 +23,10 @@
 			<span id="cleft">
 				<span class="time"></span>
 			</span>
-			<span id="cright">(c) Martin/MegapolisPlayer 2023-2024, All rights reserved.</span>
+			<span id="cright">
+				(c) Martin/MegapolisPlayer 2023-2025, 
+				<a href="https://creativecommons.org/licenses/by/4.0/deed.en">Licensed under CC-BY 4.0.</a>
+			</span>
 		</div>
 		<div id="headercontain">
 			<h id="header">CNyIES</h>
@@ -33,43 +36,76 @@
 			<button onclick="MoveToMain()">Start System</button>
 		</div>
 		<div id="settings">
-			<!-- SPANs for code readability :) -->
-			<div id="fgset">
-				<h class="name">Settings: Foreground</h><br>
-				<input type="range" id="colorfr" name="colorfr" value="80" min="0" max="255" width="20vw" onchange="ColorInputChangeHandler('fr')">
+			<div id="fgset" class="settingspart">
+				<span class="name">Settings: Foreground</span><br>
+
+				<input type="range" id="colorfr" name="colorfr" value="80" min="0" max="255">
 				<label id="lcolorfr" for="colorfr"></label><br>
 
-				<input type="range" id="colorfg" name="colorfg" value="0" min="0" max="255" width="20vw" onchange="ColorInputChangeHandler('fg')">
+				<input type="range" id="colorfg" name="colorfg" value="0" min="0" max="255">
 				<label id="lcolorfg" for="colorfg"></label><br>
 
-				<input type="range" id="colorfb" name="colorfb" value="0" min="0" max="255" width="20vw" onchange="ColorInputChangeHandler('fb')">
+				<input type="range" id="colorfb" name="colorfb" value="0" min="0" max="255">
 				<label id="lcolorfb" for="colorfb"></label><br>
 
 				<button onclick="ColorInputDefaultF(); UpdateStyle();">Reset Foreground to default</button><br>
 			</div>
-			<div id="bgset">
-				<h class="name">Settings: Background</h><br>
-				<input type="range" id="colorbr" name="colorbr" value="80" min="0" max="255" width="20vw" onchange="ColorInputChangeHandler('br')">
+			<div id="bgset" class="settingspart">
+				<span class="name">Settings: Background</span><br>
+
+				<input type="range" id="colorbr" name="colorbr" value="80" min="0" max="255">
 				<label id="lcolorbr" for="colorbr"></label><br>
 
-				<input type="range" id="colorbg" name="colorbg" value="0" min="0" max="255" width="20vw" onchange="ColorInputChangeHandler('bg')">
+				<input type="range" id="colorbg" name="colorbg" value="0" min="0" max="255">
 				<label id="lcolorbg" for="colorbg"></label><br>
 
-				<input type="range" id="colorbb" name="colorbb" value="0" min="0" max="255" width="20vw" onchange="ColorInputChangeHandler('bb')">
+				<input type="range" id="colorbb" name="colorbb" value="0" min="0" max="255">
 				<label id="lcolorbb" for="colorbb"></label><br>
 
 				<button onclick="ColorInputDefaultB(); UpdateStyle();">Reset Background to default</button><br>
 			</div>
-			<div id="allset">
-				<button onclick="ColorInputDefaultF(); ColorInputDefaultB(); UpdateStyle();">Reset everything to default</button><br>
+			<div id="langset" class="settingspart">
+				<span class="name">Languages (select which should appear)</span><br>
+
+				<input type="checkbox" id="langcz" name="langcz" checked>
+				<label id="llangcz" for="langcz">Čeština</label><br>
+				<input type="checkbox" id="langen" name="langen" checked>
+				<label id="llangen" for="langen">English</label><br>
+				<input type="checkbox" id="langru" name="langru" checked>
+				<label id="llangru" for="langru">Русский</label><br>
+				<input type="checkbox" id="langde" name="langde" checked>
+				<label id="llangde" for="langde">Deutsch</label><br>
+				<input type="checkbox" id="langpl" name="langpl" checked>
+				<label id="llangpl" for="langpl">Polski</label><br>
+				<input type="checkbox" id="langsp" name="langsp" checked>
+				<label id="llangsp" for="langsp">Español</label><br>
+
+			</div>
+			<div id="miscset" class="settingspart">
+				<span class="name">General settings</span><br>
+
+				<input type="checkbox" id="timemode" name="timemode">
+				<label id="ltimemode" for="timemode">Enable clock mode</label><br>
+				
+				<em>Clock mode - Shows the current time</em><br>
+				<em>Countdown mode - shows countdown to the New Year</em><br>
+
+				<input type="range" id="snowamount" name="snowamount" value="2500" min="0" max="5000" step="100">
+				<datalist id="dsnowamount">
+				</datalist>
+				<label id="lsnowamount" for="snowamount">Snow: 2500</label>
 			</div>
 		</div>
-		<div class="center" id="info">
+		<div id="allset" class="center">
+			<button onclick="ColorInputDefaultF(); ColorInputDefaultB(); LangInputDefault(); SnowInputDefault(); OtherDefault(); UpdateStyle();">Reset everything to default</button><br>
+		</div>
+		<div class="center bordered">
 			<p>
 				This website uses necessary cookies to save information.<br>
 				<a href="https://www.youtube.com/watch?v=JderOU9IBTo&list=PL5d1YE_8Im7NeG2G09qax1KZPClQbE1p7">All music is property of their respective owners.</a><br>
 				<a href="https://commons.wikimedia.org/wiki/File:Blue_Marble_2002.png">World map image is by NASA, sourced via Wikimedia. (public domain)</a><br>
 				<a href="https://megapolisplayer.github.io">Website by Martin/MegapolisPlayer</a><br>
+				Version 1.1 - <a href="./changelog.html">Changelog</a>
 			</p>
 		</div>
     </body>

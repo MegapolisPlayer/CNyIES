@@ -1,5 +1,5 @@
 function CookieWrite(key, value) {
-	document.cookie = key+"="+value+";SameSite=lax;path=/;";
+	document.cookie = key+"="+value+";SameSite=Lax;path=/;";
 }
 function CookieRead(key) {
 	if(document.cookie.indexOf(key) == -1) {

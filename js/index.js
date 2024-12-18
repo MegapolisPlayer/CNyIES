@@ -5,7 +5,8 @@ let HeadersShort = [
     "CNyIES",
     "РНгИРС",
     "IESWNj",
-    "BNrSIR"
+    "BNrSIR",
+	"SIENAN"
 ]; 
 
 let Headers = [
@@ -13,7 +14,8 @@ let Headers = [
     "Christmas and New Year Information and Entertainment System",
     "Рождественско-новогодняя информационно-развлекательная система",
     "Informations- und Entertainment-System für Weihnachten und Neujahr",
-    "Bożonarodzeniowy i Noworoczny System Informacyjno-Rozrywkowy"
+    "Bożonarodzeniowy i Noworoczny System Informacyjno-Rozrywkowy",
+	"Sistema de Información y Entretenimiento de Navidad y Año Nuevo"
 ]; 
     
 let LangId = 0;
@@ -86,6 +88,10 @@ function ColorInputCookieHandler() {
 	ColorInputChangeHandler("bb");
 }
 
+function SnowInputChangeHandler() {
+	document.getElementById("lsnowamount").innerHTML = "Snow: " + String(document.getElementById("snowamount").value);
+}
+
 function ColorInputDefaultF() {
 	// 255 255 255
 
@@ -114,6 +120,26 @@ function ColorInputDefaultB() {
 	UpdateStyle();
 }
 
+function LangInputDefault() {
+	//everything on
+
+	document.getElementById("langcz").checked = true;
+	document.getElementById("langen").checked = true;
+	document.getElementById("langru").checked = true;
+	document.getElementById("langde").checked = true;
+	document.getElementById("langpl").checked = true;
+	document.getElementById("langsp").checked = true;
+}
+
+function OtherDefault() {
+	document.getElementById("timemode").checked = false;
+}
+
+function SnowInputDefault() {
+	document.getElementById("snowamount").value = 2500;
+	SnowInputChangeHandler();
+}
+
 //init
 
 function InitWebI() {
@@ -128,6 +154,23 @@ function InitWebI() {
 		GetStyleCookies();
 		ColorInputCookieHandler();
 	}
+
+	for(let i = 0; i < 50; i++) {
+		document.getElementById("dsnowamount").innerHTML +=
+		"<options>"+i*100+"</options>\r\n";
+	}
+
+	//better than onchange
+	window.setInterval(() => {
+		ColorInputChangeHandler("fr");
+		ColorInputChangeHandler("fg");
+		ColorInputChangeHandler("fb");
+		ColorInputChangeHandler("br");
+		ColorInputChangeHandler("bg");
+		ColorInputChangeHandler("bb");
+
+		SnowInputChangeHandler();
+	}, 100);
 }
 
 //move to system page
@@ -137,6 +180,21 @@ function MoveToMain() {
 
 	CookieWrite("foreground", document.querySelector(":root").style.getPropertyValue("--mainfgcolor"));
 	CookieWrite("background", document.querySelector(":root").style.getPropertyValue("--mainbgcolor"));
+
+	let langString = "";
+	langString += String(Number(document.getElementById("langcz").checked));
+	langString += String(Number(document.getElementById("langen").checked));
+	langString += String(Number(document.getElementById("langru").checked));
+	langString += String(Number(document.getElementById("langde").checked));
+	langString += String(Number(document.getElementById("langpl").checked));
+	langString += String(Number(document.getElementById("langsp").checked));
+	//prevent zeroes only
+	langString = (parseInt(langString) == 0) ? "111111" : langString;
+	CookieWrite("langs", langString);
+	console.log("lang string "+langString);
+
+	CookieWrite("snow", document.getElementById("snowamount").value);
+	CookieWrite("clock", Number(document.getElementById("timemode").checked));
 
 	window.location.href='display.html';
 }
