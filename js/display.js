@@ -6,7 +6,8 @@ let Headers = [
 	"С Новым Годом и Счастливого Рождества",
 	"Fröhe Weihnachten und eines gutes neues Jahr",
 	"Błogosławionych Świąt Bożego Narodzenia i Wspanialego Nowego Roku",
-	"Feliz Navidad y Próspero Año Nuevo"
+	"Feliz Navidad y Próspero Año Nuevo",
+	"Boldog karácsonyt és boldog új évet"
 ];
 
 let Count = [
@@ -15,7 +16,8 @@ let Count = [
 	"Отсчет до Нового года",
 	"Neujahr-Countdown",
 	"Odliczanie do Nowego Roku",
-	"Cuenta regresiva para el nuevo año"
+	"Cuenta regresiva para el nuevo año",
+	"Visszaszámlálás az új évig"
 ]; 
 let TimeNames = [
     "Aktuální čas",
@@ -23,7 +25,8 @@ let TimeNames = [
 	"Текущее время",
 	"Aktuelle Zeit",
 	"Aktualny czas",
-	"Hora actual"
+	"Hora actual",
+	"Aktuális idő"
 ];
 
 let CountdownDescs = [
@@ -32,7 +35,8 @@ let CountdownDescs = [
     "День:Час:Минута:Секунда",
     "Tag:Stunde:Minute:Sekunde",
     "Dzień:Godzina:Minuta:Sekunda",
-	"Día:Hora:Minuto:Segundo"
+	"Día:Hora:Minuto:Segundo",
+	"Nap:Óra:Perc:Második"
 ];
 let TimeFormat = [
     "Hodina:Minuta:Sekunda",
@@ -40,7 +44,8 @@ let TimeFormat = [
     "Час:Минута:Секунда",
     "Stunde:Minute:Sekunde",
     "Godzina:Minuta:Sekunda",
-	"Hora:Minuto:Segundo"
+	"Hora:Minuto:Segundo",
+	"Óra:Perc:Második"
 ];
 
 let Music = [
@@ -49,15 +54,17 @@ let Music = [
 	"Музыка",
 	"Musik",
 	"Muzyka",
-	"Música"
+	"Música",
+	"Zene"
 ]; 
 let TzMap = [
     "Mapa časových pásem",
-    "Map of Timezones",
+    "Map of timezones",
     "Карта часовых поясов",
     "Karte der Zeitzonen",
     "Mapa stref czasowych",
-	"Mapa de zonas horarias"
+	"Mapa de zonas horarias",
+	"Időzónák térképe"
 ]; 
          
 let LangId = 0;

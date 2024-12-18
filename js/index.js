@@ -6,7 +6,8 @@ let HeadersShort = [
     "РНгИРС",
     "IESWNj",
     "BNrSIR",
-	"SIENAN"
+	"SIENAN",
+	"KUjISR",
 ]; 
 
 let Headers = [
@@ -15,7 +16,8 @@ let Headers = [
     "Рождественско-новогодняя информационно-развлекательная система",
     "Informations- und Entertainment-System für Weihnachten und Neujahr",
     "Bożonarodzeniowy i Noworoczny System Informacyjno-Rozrywkowy",
-	"Sistema de Información y Entretenimiento de Navidad y Año Nuevo"
+	"Sistema de Información y Entretenimiento de Navidad y Año Nuevo",
+	"Karácsonyi és újévi információs és szórakoztató rendszer"
 ]; 
     
 let LangId = 0;
@@ -129,6 +131,7 @@ function LangInputDefault() {
 	document.getElementById("langde").checked = true;
 	document.getElementById("langpl").checked = true;
 	document.getElementById("langsp").checked = true;
+	document.getElementById("langhu").checked = true;
 }
 
 function OtherDefault() {
@@ -188,8 +191,9 @@ function MoveToMain() {
 	langString += String(Number(document.getElementById("langde").checked));
 	langString += String(Number(document.getElementById("langpl").checked));
 	langString += String(Number(document.getElementById("langsp").checked));
+	langString += String(Number(document.getElementById("langhu").checked));
 	//prevent zeroes only
-	langString = (parseInt(langString) == 0) ? "111111" : langString;
+	langString = (parseInt(langString) == 0) ? "1111111" : langString;
 	CookieWrite("langs", langString);
 	console.log("lang string "+langString);
 
