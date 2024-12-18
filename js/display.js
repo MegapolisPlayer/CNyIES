@@ -345,6 +345,30 @@ function SnowflakeInit() {
 	SnowflakeInterval = setInterval(SnowflakeUpdate, 10);
 }
 
+//sourced from my own playlist
+//https://www.youtube.com/playlist?list=PL5d1YE_8Im7NeG2G09qax1KZPClQbE1p7
+let MusicYTIDs = [
+	"m8M69mrfQlo",
+	"V3BLUMLB-xI",
+	"QBF0F3haAZM",
+	"EMT_J-gYYz8",
+	"5Xvo0-QBFeQ",
+	"WoS1y88zx6A",
+	"JderOU9IBTo",
+	"KO5akJ29wwQ",
+	"sl-xupx1bVU",
+	"ozyxPcK1r6c",
+	"Mq3hRVAC1GE",
+	"XiTIfH0TpTg",
+	"CWKYyqpSbgU",
+	"JGX8umOcmPg",
+	"ZLqbkBPNEUU",
+	"3BS9ohD1R5g",
+	"CRb7Ugl8HVs",
+	"3RJ2gEFXzgc",
+	"O0fkOIR_67I"	
+];
+
 //init
 
 function InitWebD() {
@@ -366,6 +390,19 @@ function InitWebD() {
 
 	//setup headers
 	ChangeHeader();
+
+	//init player
+
+	let yturl = "https://www.youtube.com/embed/0?playlist=";
+
+	MusicYTIDs.forEach((v) => {
+		yturl += v;
+		yturl += ',';
+	});
+
+	yturl += "&version=3&autoplay=1&disablekb=1&loop=1&color=white";
+
+	document.getElementById("ytif").src = yturl;
 
 	DrawWorldMap();
 	DrawTimezoneBounds();
