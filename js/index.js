@@ -199,6 +199,7 @@ function MoveToMain() {
 
 	CookieWrite("snow", document.getElementById("snowamount").value);
 	CookieWrite("clock", Number(document.getElementById("timemode").checked));
+	CookieWrite("pad", Number(document.getElementById("cdownmode").checked));
 
 	window.location.href='display.html';
 }

@@ -32,7 +32,7 @@
 			<h id="header">CNyIES</h>
 			<p id="headerp">Christmas and New Year Information and Entertainment System</p>
 		</div>
-		<div class="center">
+		<div class="center colorswitch">
 			<button onclick="MoveToMain()">Start System</button>
 		</div>
 		<div id="settings">
@@ -95,10 +95,15 @@
 				<input type="range" id="snowamount" name="snowamount" value="2500" min="0" max="5000" step="100">
 				<datalist id="dsnowamount">
 				</datalist>
-				<label id="lsnowamount" for="snowamount">Snow: 2500</label>
+				<label id="lsnowamount" for="snowamount">Snow: 2500</label><br>
+
+				<input type="checkbox" id="cdownmode" name="cdownmode">
+				<label id="lcdownmode" for="cdownmode">Always show minutes, hours and days in countdown</label><br>
+
+				<em>If this option is unchecked, only the units currently decreasing (non-zero) will be shown.</em>
 			</div>
 		</div>
-		<div id="allset" class="center">
+		<div id="allset" class="center colorswitch">
 			<button onclick="ColorInputDefaultF(); ColorInputDefaultB(); LangInputDefault(); SnowInputDefault(); OtherDefault(); UpdateStyle();">Reset everything to default</button><br>
 		</div>
 		<div class="center bordered">
@@ -107,7 +112,7 @@
 				<a href="https://www.youtube.com/playlist?list=PL5d1YE_8Im7NeG2G09qax1KZPClQbE1p7">All music is property of their respective owners.</a><br>
 				<a href="https://commons.wikimedia.org/wiki/File:Blue_Marble_2002.png">World map image is by NASA, sourced via Wikimedia. (public domain)</a><br>
 				<a href="https://megapolisplayer.github.io">Website by Martin/MegapolisPlayer</a><br>
-				Version 1.1 - <a href="./changelog.html">Changelog</a>
+				Version 1.1.1 - <a href="./changelog.html">Changelog</a>
 			</p>
 		</div>
     </body>

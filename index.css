@@ -10,11 +10,11 @@
 #settings {
     display: grid;
     columns: 2;
+    border-bottom: 0.25vw solid var(--mainfgcolor); 
 }
 
 .settingspart {
     width: 49vw;
-    border-bottom: 0.25vw solid var(--mainfgcolor); 
 }
 
 #fgset { 

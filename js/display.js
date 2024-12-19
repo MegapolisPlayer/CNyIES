@@ -244,6 +244,8 @@ const MapUpdateInterval = setInterval(DrawTimezoneBounds, 2500); //every 2.5 sec
 //forcechanges: forces changes after new year, DEBUG ONLY
 let DEBUG_ForceChanges = false;
 
+let PadWithZeroes = false;
+
 function DecreaseCountdown() {
 	if(TimeMode) {
 		document.getElementById("maincount").innerHTML = 
@@ -262,17 +264,37 @@ function DecreaseCountdown() {
 
 	let Seconds = (new Date(DateNow.getFullYear() + 1, 0, 1, 0, 0, 0, 0) - DateNow) / 1000; //to seconds (original in MS)
 
-	//new year passed - 1st or 2nd of January - GREY countdown
-	if((DateNow.getDate() <= 2 && DateNow.getMonth() == 0) || DEBUG_ForceChanges) {
+	//new year passed - first week of January - GREY countdown
+	if((DateNow.getDate() <= 7 && DateNow.getMonth() == 0) || DEBUG_ForceChanges) {
 		document.getElementById("maincount").style = "filter: brightness(30%);";
 	}
 
-	document.getElementById("maincount").innerHTML = 
-		String(Math.floor(Seconds / 86400)).padStart(2, '0') + ":" +
-		String(Math.floor((Seconds % 86400) / 3600)).padStart(2, '0') + ":" +
-		String(Math.floor((Seconds % 86400 % 3600) / 60)).padStart(2, '0') + ":" +
-		String(Math.floor(Seconds % 86400 % 3600 % 60)).padStart(2, '0')
-		;
+	let RDays = Math.floor(Seconds / 86400);
+	let RHrs = Math.floor((Seconds % 86400) / 3600);
+	let RMins = Math.floor((Seconds % 86400 % 3600) / 60);
+	let RSecs = Math.floor(Seconds % 86400 % 3600 % 60);
+
+	let ResultingString = "";
+	if(PadWithZeroes) {
+		ResultingString = String(RDays).padStart(2, '0') + ":" +
+		String(RHrs).padStart(2, '0') + ":" +
+		String(RMins).padStart(2, '0') + ":" +
+		String(RSecs).padStart(2, '0');
+	}
+	else {
+		if(RDays != 0) {
+			ResultingString += String(RDays).padStart(2, '0') + ":";
+		}
+		if(RHrs != 0) {
+			ResultingString += String(RHrs).padStart(2, '0') + ":";
+		}
+		if(RMins != 0) {
+			ResultingString += String(RMins).padStart(2, '0') + ":";
+		}
+		ResultingString += String(RSecs).padStart(2, '0');
+	}
+
+	document.getElementById("maincount").innerHTML = ResultingString;
 
 	//new year passed - 1st or 2nd of January - append the year
 	if((DateNow.getDate() <= 2 && DateNow.getMonth() == 0) || DEBUG_ForceChanges) {
@@ -394,6 +416,7 @@ function InitWebD() {
 	console.log("Time mode "+TimeMode);
 	LangIdBlock = CookieRead("langs").split('').map((v) => { return parseInt(v); });
 	console.log("Language permissions "+LangIdBlock);
+	PadWithZeroes = Boolean(Number(CookieRead("pad")));
 
 	//setup headers
 	ChangeHeader();

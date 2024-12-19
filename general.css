@@ -33,9 +33,9 @@ button {
 	border: 0.05vw solid var(--mainfgcolor);
 }
 
-#colorswitch {
-    background-color: var(--mainbgcolor);
-	color: var(--mainfgcolor);
+.colorswitch {
+    background-color: var(--mainfgcolor);
+	color: var(--mainbgcolor);
 }
 
 .name {
