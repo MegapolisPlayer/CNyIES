@@ -135,7 +135,9 @@ function LangInputDefault() {
 }
 
 function OtherDefault() {
+	document.getElementById("cdownmode").checked = false;
 	document.getElementById("timemode").checked = false;
+	document.getElementById("midnightmusic").checked = false;
 }
 
 function SnowInputDefault() {
@@ -201,7 +203,7 @@ function MoveToMain() {
 	CookieWrite("clock", Number(document.getElementById("timemode").checked));
 	CookieWrite("pad", Number(document.getElementById("cdownmode").checked));
 
-	CookieWrite("music", Number(document.getElementById("cmidnightmusic").checked));	
+	CookieWrite("music", Number(document.getElementById("midnightmusic").checked));	
 
 	window.location.href='display.html';
 }
