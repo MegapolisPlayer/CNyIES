@@ -103,6 +103,43 @@ function ChangeHeader() {
 }
 const HeaderChangeInterval = setInterval(ChangeHeader, 2000);
      
+//sourced from my own playlist
+//https://www.youtube.com/playlist?list=PL5d1YE_8Im7NeG2G09qax1KZPClQbE1p7
+let MusicYTIDs = [
+	"XiTIfH0TpTg", //handel at beginning so can be played at midnight
+	"m8M69mrfQlo",
+	"V3BLUMLB-xI",
+	"QBF0F3haAZM",
+	"EMT_J-gYYz8",
+	"5Xvo0-QBFeQ",
+	"WoS1y88zx6A",
+	"JderOU9IBTo",
+	"KO5akJ29wwQ",
+	"sl-xupx1bVU",
+	"ozyxPcK1r6c",
+	"Mq3hRVAC1GE",
+	"CWKYyqpSbgU",
+	"JGX8umOcmPg",
+	"ZLqbkBPNEUU",
+	"3BS9ohD1R5g",
+	"CRb7Ugl8HVs",
+	"3RJ2gEFXzgc",
+	"O0fkOIR_67I"	
+];
+
+function SetPlaylist() {
+	let yturl = "https://www.youtube.com/embed/0?playlist=";
+
+	MusicYTIDs.forEach((v) => {
+		yturl += v;
+		yturl += ',';
+	});
+
+	yturl += "&version=3&autoplay=1&disablekb=1&loop=1&color=white";
+
+	document.getElementById("ytif").src = yturl;
+}
+
 //timezone map
 
 let Canvas = {};
@@ -148,7 +185,6 @@ function DrawTimezoneBounds() {
 
 	for(let i = 0; i < 25; i++) {
 		//variables
-
 
 		let NewYearTime;
 		if((DateNow.getDate() <= 2 && DateNow.getMonth() == 0) || DEBUG_ForceChanges) {
@@ -218,7 +254,12 @@ function DrawTimezoneBounds() {
 				TimeUntilNewYearText = String(TimeUntilNewYearH).padStart(2, '0') + ":" + String(TimeUntilNewYearM).padStart(2, '0');
 			}
 			else if(TimeUntilNewYearH <= 0) {
-				TimeUntilNewYearText = String(Math.abs(TimeUntilNewYearH + 1)).padStart(2, '0') + ":" + String(Math.abs(TimeUntilNewYearM)).padStart(2, '0');
+				if(TimeUntilNewYearH <= -99) {
+					TimeUntilNewYearText = ">99h";
+				}
+				else {
+					TimeUntilNewYearText = String(Math.abs(TimeUntilNewYearH + 1)).padStart(2, '0') + ":" + String(Math.abs(TimeUntilNewYearM)).padStart(2, '0');
+				}
 			}
 			else {
 				TimeUntilNewYearText = ">99h";
@@ -279,8 +320,7 @@ function DecreaseCountdown() {
 		if(PlayMusicOnMidnight) {
 			PlayMusicOnMidnight = false; //fire only once
 
-			let yturl = "https://www.youtube.com/embed/XiTIfH0TpTg?si=3fWTWy2tK-JRltzC&amp;start=3&version=3&autoplay=1&disablekb=1&loop=1&color=white";
-			document.getElementById("ytif").src = yturl;
+			SetPlaylist(); //reset playlist - plays first (Handel)
 			console.log("changed music");
 		}
 	}
@@ -390,30 +430,6 @@ function SnowflakeInit() {
 	SnowflakeInterval = setInterval(SnowflakeUpdate, 10);
 }
 
-//sourced from my own playlist
-//https://www.youtube.com/playlist?list=PL5d1YE_8Im7NeG2G09qax1KZPClQbE1p7
-let MusicYTIDs = [
-	"m8M69mrfQlo",
-	"V3BLUMLB-xI",
-	"QBF0F3haAZM",
-	"EMT_J-gYYz8",
-	"5Xvo0-QBFeQ",
-	"WoS1y88zx6A",
-	"JderOU9IBTo",
-	"KO5akJ29wwQ",
-	"sl-xupx1bVU",
-	"ozyxPcK1r6c",
-	"Mq3hRVAC1GE",
-	"XiTIfH0TpTg",
-	"CWKYyqpSbgU",
-	"JGX8umOcmPg",
-	"ZLqbkBPNEUU",
-	"3BS9ohD1R5g",
-	"CRb7Ugl8HVs",
-	"3RJ2gEFXzgc",
-	"O0fkOIR_67I"	
-];
-
 //init
 
 function InitWebD() {
@@ -441,16 +457,7 @@ function InitWebD() {
 
 	//init player
 
-	let yturl = "https://www.youtube.com/embed/0?playlist=";
-
-	MusicYTIDs.forEach((v) => {
-		yturl += v;
-		yturl += ',';
-	});
-
-	yturl += "&version=3&autoplay=1&disablekb=1&loop=1&color=white";
-
-	document.getElementById("ytif").src = yturl;
+	SetPlaylist();
 
 	DrawWorldMap();
 	DrawTimezoneBounds();
