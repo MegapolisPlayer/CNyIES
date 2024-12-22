@@ -127,7 +127,7 @@ let MusicYTIDs = [
 	"O0fkOIR_67I"	
 ];
 
-function SetPlaylist() {
+function SetPlaylist(startIndex = 0) {
 	let yturl = "https://www.youtube.com/embed/0?playlist=";
 
 	MusicYTIDs.forEach((v) => {
@@ -135,6 +135,7 @@ function SetPlaylist() {
 		yturl += ',';
 	});
 
+	yturl += "&index="+startIndex;
 	yturl += "&version=3&autoplay=1&disablekb=1&loop=1&color=white";
 
 	document.getElementById("ytif").src = yturl;
@@ -320,7 +321,7 @@ function DecreaseCountdown() {
 		if(PlayMusicOnMidnight) {
 			PlayMusicOnMidnight = false; //fire only once
 
-			SetPlaylist(); //reset playlist - plays first (Handel)
+			SetPlaylist(0); //reset playlist - plays first (Handel)
 			console.log("changed music");
 		}
 	}
@@ -457,7 +458,7 @@ function InitWebD() {
 
 	//init player
 
-	SetPlaylist();
+	SetPlaylist(Math.trunc(Math.random()*(MusicYTIDs.length)));
 
 	DrawWorldMap();
 	DrawTimezoneBounds();
