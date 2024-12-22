@@ -279,7 +279,7 @@ function DecreaseCountdown() {
 		if(PlayMusicOnMidnight) {
 			PlayMusicOnMidnight = false; //fire only once
 
-			let yturl = "https://www.youtube.com/embed/XiTIfH0TpTg&version=3&autoplay=1&disablekb=1&loop=1&color=white";
+			let yturl = "https://www.youtube.com/embed/XiTIfH0TpTg?si=3fWTWy2tK-JRltzC&amp;start=3&version=3&autoplay=1&disablekb=1&loop=1&color=white";
 			document.getElementById("ytif").src = yturl;
 			console.log("changed music");
 		}
