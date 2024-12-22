@@ -342,10 +342,10 @@ function DecreaseCountdown() {
 		if(RDays != 0) {
 			ResultingString += String(RDays).padStart(2, '0') + ":";
 		}
-		if(RHrs != 0) {
+		if(RHrs != 0 || RDays != 0) {
 			ResultingString += String(RHrs).padStart(2, '0') + ":";
 		}
-		if(RMins != 0) {
+		if(RMins != 0 || RHrs != 0 || RDays != 0) {
 			ResultingString += String(RMins).padStart(2, '0') + ":";
 		}
 		ResultingString += String(RSecs).padStart(2, '0');
