@@ -48,7 +48,7 @@
 				<input type="range" id="colorfb" name="colorfb" value="0" min="0" max="255">
 				<label id="lcolorfb" for="colorfb"></label><br>
 
-				<button onclick="ColorInputDefaultF(); UpdateStyle();">Reset Foreground to default</button><br>
+				<button onclick="ColorInputDefaultF(); UpdateStyle();">Reset foreground</button><br>
 			</div>
 			<div id="bgset" class="settingspart">
 				<span class="name">Settings: Background</span><br>
@@ -62,7 +62,7 @@
 				<input type="range" id="colorbb" name="colorbb" value="0" min="0" max="255">
 				<label id="lcolorbb" for="colorbb"></label><br>
 
-				<button onclick="ColorInputDefaultB(); UpdateStyle();">Reset Background to default</button><br>
+				<button onclick="ColorInputDefaultB(); UpdateStyle();">Reset background</button><br>
 			</div>
 			<div id="langset" class="settingspart">
 				<span class="name">Languages (select which should appear)</span><br>
@@ -99,8 +99,10 @@
 
 				<input type="checkbox" id="cdownmode" name="cdownmode">
 				<label id="lcdownmode" for="cdownmode">Always show minutes, hours and days in countdown</label><br>
+				<em>If this option is unchecked, only the units currently decreasing (non-zero) will be shown.</em><br>
 
-				<em>If this option is unchecked, only the units currently decreasing (non-zero) will be shown.</em>
+				<input type="checkbox" id="cmidnightmusic" name="cmidnightmusic">
+				<label id="lcmidnightmusic" for="cmidnightmusic">Play Handel's "Music for the Royal Fireworks" after end of countdown</label><br>
 			</div>
 		</div>
 		<div id="allset" class="center colorswitch">
@@ -112,7 +114,7 @@
 				<a href="https://www.youtube.com/playlist?list=PL5d1YE_8Im7NeG2G09qax1KZPClQbE1p7">All music is property of their respective owners.</a><br>
 				<a href="https://commons.wikimedia.org/wiki/File:Blue_Marble_2002.png">World map image is by NASA, sourced via Wikimedia. (public domain)</a><br>
 				<a href="https://megapolisplayer.github.io">Website by Martin/MegapolisPlayer</a><br>
-				Version 1.1.1 - <a href="./changelog.html">Changelog</a>
+				Version 1.1.2 - <a href="./changelog.html">Changelog</a>
 			</p>
 		</div>
     </body>

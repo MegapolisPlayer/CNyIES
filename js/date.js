@@ -2,7 +2,7 @@ let DateNow = new Date();
 
 function DateUpdate() {
 	DateNow = new Date();
-	//DateNow.setTime(DateNow.getTime() + (12*86400*1000) + (12*3600*1000) + (56*60*1000)); //DEBUG offset for testing
+	//DateNow.setTime(DateNow.getTime() + (9*86400*1000) + (9*3600*1000) + (-6*60*1000)); //DEBUG offset for testing
 	let List = document.querySelectorAll(".time");
 	
 	for(let i = 0; i < List.length; i++) {

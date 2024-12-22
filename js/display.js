@@ -168,6 +168,12 @@ function DrawTimezoneBounds() {
 			TimeUntilNewYearM = Math.floor((TimeUntilNewYear % 3600) / 60); //convert to minutes (remove hours)
 		}
 
+		//can be -60 and 60
+		if(Math.abs(TimeUntilNewYearM) == 60) {
+			TimeUntilNewYearM = 0;
+			TimeUntilNewYearH -= 1;
+		}
+
 		if(!((TimeUntilNewYearH > 0 && TimeUntilNewYearH <= 24) || (TimeUntilNewYearH > 99))) {
 			//timezone transparent boxes
 
@@ -215,7 +221,7 @@ function DrawTimezoneBounds() {
 				TimeUntilNewYearText = String(Math.abs(TimeUntilNewYearH + 1)).padStart(2, '0') + ":" + String(Math.abs(TimeUntilNewYearM)).padStart(2, '0');
 			}
 			else {
-				TimeUntilNewYearText = ">99:00";
+				TimeUntilNewYearText = ">99h";
 			}
 			DrawCenteredText(TimeUntilNewYearText, GetPercentage((i*(100/24)), Canvas.width), Canvas.height*0.8);
 
@@ -246,6 +252,8 @@ let DEBUG_ForceChanges = false;
 
 let PadWithZeroes = false;
 
+let PlayMusicOnMidnight = false;
+
 function DecreaseCountdown() {
 	if(TimeMode) {
 		document.getElementById("maincount").innerHTML = 
@@ -267,6 +275,14 @@ function DecreaseCountdown() {
 	//new year passed - first week of January - GREY countdown
 	if((DateNow.getDate() <= 7 && DateNow.getMonth() == 0) || DEBUG_ForceChanges) {
 		document.getElementById("maincount").style = "filter: brightness(30%);";
+
+		if(PlayMusicOnMidnight) {
+			PlayMusicOnMidnight = false; //fire only once
+
+			let yturl = "https://www.youtube.com/embed/XiTIfH0TpTg&version=3&autoplay=1&disablekb=1&loop=1&color=white";
+			document.getElementById("ytif").src = yturl;
+			console.log("changed music");
+		}
 	}
 
 	let RDays = Math.floor(Seconds / 86400);
@@ -417,6 +433,8 @@ function InitWebD() {
 	LangIdBlock = CookieRead("langs").split('').map((v) => { return parseInt(v); });
 	console.log("Language permissions "+LangIdBlock);
 	PadWithZeroes = Boolean(Number(CookieRead("pad")));
+
+	PlayMusicOnMidnight = Boolean(Number(CookieRead("music")));
 
 	//setup headers
 	ChangeHeader();

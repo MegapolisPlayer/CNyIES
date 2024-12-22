@@ -201,5 +201,7 @@ function MoveToMain() {
 	CookieWrite("clock", Number(document.getElementById("timemode").checked));
 	CookieWrite("pad", Number(document.getElementById("cdownmode").checked));
 
+	CookieWrite("music", Number(document.getElementById("cmidnightmusic").checked));	
+
 	window.location.href='display.html';
 }
