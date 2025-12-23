@@ -1,0 +1,54 @@
+/* CSS for the new festies box */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=SUSE:ital,wght@0,100..900;1,100..900&display=swap');
+
+.festies {
+	background: linear-gradient(90deg, oklch(50% 0.134 242.749) 0%, oklch(21% 0.034 264.665) 100%);
+	padding: 1rem;
+	min-height: 8rem;
+	font-family: 'SUSE', sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: normal;
+	flex-grow: 1;
+	flex-direction: column;
+	gap: 0px;
+	color: white;
+	font-size: 1rem;
+}
+
+.festies .fest1 {
+	display: flex;
+	flex-grow: 1;
+	width: 100%;
+	gap: 0rem;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.festies h1 {
+	font-size: 2rem;
+	font-weight: bolder;
+	line-height: 0.25 !important;	
+	margin: 0px;
+	padding: 0.5rem;
+}
+
+.festies h2 {
+	font-size: 2rem;
+	font-weight: normal;
+	line-height: 0.25 !important;	
+	margin: 0px;
+	padding: 0px;
+}
+
+.festies a {
+	color: white;
+}
+
+.festiesbutton {
+	background: linear-gradient(90deg, oklch(50% 0.134 242.749) 0%, oklch(21% 0.034 264.665) 100%);
+	padding: 0.2rem;
+	font-family: 'SUSE', sans-serif;
+}
